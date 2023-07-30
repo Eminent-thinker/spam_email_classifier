@@ -1,5 +1,10 @@
 import streamlit as st
-import pickle
+import joblib
+import nltk
+from nltk.corpus import stopwords
+from nltk.stem.porter import PorterStemmer
+
+ps = PorterStemmer()
 
 def transform_message(message):
     message = message.lower()
@@ -11,8 +16,8 @@ def transform_message(message):
             transformed_words.append(root_words)
     return ' '.join(transformed_words)
 
-cv = pickle.load(open('vectorizer.pkl', 'rb'))
-model = pickle.load(open('model.pkl', 'rb'))
+cv = joblib.load('vectorizer.pkl')
+model = joblib.load('model.pkl')
 st.title('SMS/EMAIL SPAM CLASSIFIER')
 message_input = st.text_area('Enter your message here')
 transformed_text = transform_message(message_input)
