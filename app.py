@@ -3,7 +3,7 @@ import joblib
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
-
+nltk.download("punkt")
 ps = PorterStemmer()
 
 def transform_message(message):
